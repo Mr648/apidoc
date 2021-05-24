@@ -12,11 +12,17 @@ class Api extends Model
     protected $fillable = [
         'route',
         'name',
+        'version',
         'scope',
-        'description',
         'type',
         'body',
+        'description',
     ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
 
     public function params()
     {

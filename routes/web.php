@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\HeadersController;
+use App\Http\Controllers\MiddlewareController;
+use App\Http\Controllers\ParamsController;
+use App\Http\Controllers\QueriesController;
+use App\Http\Controllers\ResponsesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +19,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return urldecode('%7B%22cloud%22%3A%22il_1%22%2C%22cloudVersion%22%3A%2218769%22%2C%22enablePurchase%22%3Atrue%2C%22enablePropWeapon%22%3Atrue%2C%22interstitialLevel%22%3A6%2C%22interstitialMinTime%22%3A15%2C%22showInterstitial%22%3Atrue%2C%22interstitialX%22%3A1%2C%22interstitialY%22%3A0%2C%22recommendPowerRate%22%3A0.003%2C%22difficultyRate%22%3A0.75%2C%22boosLifeRate%22%3A8%2C%22enableSkin%22%3Atrue%2C%22spin%22%3A%5B%5B0.35%2C0.1%2C0.05%2C0.3%2C0.05%2C0.3%2C0.2%2C0%5D%2C%5B0.3%2C0.1%2C0.05%2C0.2%2C0.05%2C0.3%2C0.2%2C0%5D%2C%5B0.3%2C0.15%2C0.1%2C0.2%2C0.08%2C0.3%2C0.2%2C0%5D%2C%5B0.3%2C0.2%2C0.15%2C0.2%2C0.08%2C0.3%2C0.2%2C0.1%5D%5D%7D');
-    });
+
+Route::redirect('/', '/apis');
+
+Route::resource('apis', ApiController::class)->except([
+    'update',
+    'destroy',
+    'edit'
+]);
+
+Route::resource('middlewares', MiddlewareController::class)->except([
+    'update',
+    'destroy',
+    'edit',
+    'show'
+]);
+
+$excepts = [
+    'update',
+    'destroy',
+    'index',
+    'show',
+    'edit'
+];
+
+Route::resource('apis.params', ParamsController::class)->except($excepts)->shallow();
+Route::resource('apis.headers', HeadersController::class)->except($excepts)->shallow();
+Route::resource('apis.queries', QueriesController::class)->except($excepts)->shallow();
+Route::resource('apis.responses', ResponsesController::class)->except($excepts)->shallow();
+
+Route::get('/apis/{api}/middlewares/bind', [MiddlewareController::class, 'binder'])
+    ->name('apis.middlewares.binder');
+
+Route::post('/apis/{api}/middlewares', [MiddlewareController::class, 'bind'])
+    ->name('apis.middlewares.bind');
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -9,6 +9,8 @@ class Middleware extends Model
 {
     use HasFactory;
 
+    protected $table = 'middlewares';
+
     protected $fillable = [
         'previous',
         'name',
