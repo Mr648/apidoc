@@ -36,7 +36,9 @@
             ]
         ]
     )
-    @include('controls.textarea' ,['input'=>'sample', 'default'=>'', 'rows'=>20] )
+    @include('controls.textarea' ,['input'=>'description', 'default'=>'همه نکات رعایت شده', 'rows'=>3] )
+    @include('controls.textarea' ,['input'=>'request', 'default'=>'', 'rows'=>3] )
+    @include('controls.textarea' ,['input'=>'sample', 'default'=>'', 'rows'=>3] )
     @include('controls.submit',['text'=>'Create!'])
 @endsection
 

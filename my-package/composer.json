@@ -13,6 +13,30 @@
             "email": "rahmatwaisi@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": "^7.4|^8.0",
+        "guzzlehttp/guzzle": "^7"
+    },
+    "psr-4": {
+        "RahmatWaisi\\PoL\\": "src"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RahmatWaisi\\PoL\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RahmatWaisi\\PoL\\Providers\\PoLServiceProvider"
+            ],
+            "aliases": [
+                ""
+            ]
+        }
+    },
     "minimum-stability": "dev"
 }

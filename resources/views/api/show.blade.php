@@ -10,6 +10,18 @@
                 @include('controls.navitem', ['input'=>'queries'])
                 @include('controls.navitem', ['input'=>'middlewares'])
                 @include('controls.navitem', ['input'=>'responses'])
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-danger"
+                       href="{{route('apis.pdf', ['api'=>$api->id])}}" target="_blank">PDF</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-dark"
+                       href="{{route('apis.json', ['api'=>$api->id])}}" target="_blank">Json</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-info"
+                       href="{{route('apis.simple', ['api'=>$api->id])}}" target="_blank">Basic</a>
+                </li>
             </ul>
         </div>
         <div class="card-body">
@@ -26,7 +38,7 @@
                     <div class="card-text"><strong>Description:</strong>
                         <p>{{$api->description}}</p></div>
                     <div class="card-text"><strong>Type:</strong>
-                        <p>{{ucfirst($api->type)}}</p></div>
+                        <p><mark>{{ucfirst($api->type)}}</mark></p></div>
                     <div class="card-text"><strong>Body:</strong>
                         <p>{{ucfirst($api->body)}}</p></div>
                 </div>

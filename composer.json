@@ -14,7 +14,9 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.2"
+        "laravel/ui": "^3.2",
+        "niklasravnsborg/laravel-pdf": "^4.0",
+        "symfony/yaml": "^5.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

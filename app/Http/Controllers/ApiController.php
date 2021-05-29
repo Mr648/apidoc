@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ApiResource;
 use App\Models\Api;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Yaml\Yaml;
 use Illuminate\Http\Request;
+use PDF;
 
 class ApiController extends Controller
 {
+
     public function index(Request $request)
     {
 
@@ -26,7 +33,7 @@ class ApiController extends Controller
 
         $apis = $apis->get();
 
-        return view('api.index', compact('apis'));
+        return view('api.table', compact('apis'));
     }
 
     public function show(Api $api)
@@ -44,7 +51,7 @@ class ApiController extends Controller
 
     public function create()
     {
-        return view('api.create' , ['route'=>route('apis.store')]);
+        return view('api.create', ['route' => route('apis.store')]);
     }
 
     public function store(Request $request)
@@ -71,5 +78,66 @@ class ApiController extends Controller
 
         auth()->user()->apis()->save($api);
         return redirect()->back();
+    }
+
+    public function toPdf(Api $api)
+    {
+        $api->load([
+            'author',
+            'params',
+            'headers',
+            'queries',
+            'responses',
+            'middlewares'
+        ])->loadCount([
+            'params',
+            'headers',
+            'queries',
+            'responses',
+            'middlewares'
+        ]);
+//        $html = view('api.pdf', compact('api'))->render();
+        $pdf = PDF::loadView('api.pdf', compact('api'));
+        $filename = sprintf('apis_%s_%d.pdf', unique_code(15), $api->id);
+        return $pdf->download($filename);
+    }
+
+    public function simple(Api $api)
+    {
+
+        $api->load([
+            'author',
+            'params',
+            'headers',
+            'queries',
+            'responses',
+            'middlewares'
+        ])->loadCount([
+            'params',
+            'headers',
+            'queries',
+            'responses',
+            'middlewares'
+        ]);
+        return view('api.pdf', compact('api'));
+    }
+    public function json(Api $api)
+    {
+        $api->load([
+            'author',
+            'params',
+            'headers',
+            'queries',
+            'responses',
+            'middlewares'
+        ])->loadCount([
+            'params',
+            'headers',
+            'queries',
+            'responses',
+            'middlewares'
+        ]);
+
+        return response()->json(new ApiResource($api));
     }
 }

@@ -9,6 +9,9 @@ class Api extends Model
 {
     use HasFactory;
 
+    protected $appends=[
+        'style'
+    ];
     protected $fillable = [
         'route',
         'name',
@@ -17,6 +20,15 @@ class Api extends Model
         'type',
         'body',
         'description',
+    ];
+
+    protected $styles = [
+        'GET' => 'badge badge-light rounded-pill text-info',
+        'POST' => 'badge badge-light rounded-pill text-success',
+        'PUT' => 'badge badge-light rounded-pill text-warning',
+        'PATCH' => 'badge badge-light rounded-pill text-secondary',
+        'ANY' => 'badge badge-light rounded-pill text-dark',
+        'DELETE' => 'badge badge-light rounded-pill text-danger',
     ];
 
     public function author()
@@ -47,5 +59,11 @@ class Api extends Model
     public function middlewares()
     {
         return $this->belongsToMany(Middleware::class, 'api_middleware');
+    }
+
+
+    public function getStyleAttribute()
+    {
+        return $this->styles[$this->type];
     }
 }

@@ -22,13 +22,17 @@ class ResponsesController extends Controller
             'api' => 'required|integer|exists:apis,id',
             'code' => 'nullable|string|in:200,201,204,202,400,404,403,401,504,408,303,503,500',
             'type' => 'nullable|string|in:json,html,text,image,file,view',
-            'sample' => 'nullable|string|max:5000',
+            'description' => 'nullable|string|max:5000',
+            'request' => 'nullable|string|max:5000',
+            'sample' => 'nullable|string|max:50000',
         ]);
 
         $api = Api::find($request->get('api'));
         $response = new \App\Models\Response([
             'code' => $request->get('code'),
             'type' => $request->get('type'),
+            'request' => $request->get('request'),
+            'description' => $request->get('description'),
             'sample' => $request->get('sample'),
         ]);
 

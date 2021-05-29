@@ -4,26 +4,28 @@
     </div>
     <div class="card-body">
         @if(count($params)!=0)
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Previous</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Next</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($params as $param)
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
                     <tr>
-                        <th scope="row">{{$param->id}}</th>
-                        <td>{{$param->previous}}</td>
-                        <td>{{$param->name}}</td>
-                        <td>{{$param->next}}</td>
+                        <th scope="col">#</th>
+                        <th scope="col">Previous</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Next</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($params as $param)
+                        <tr>
+                            <th scope="row">{{ $loop->index +1 }}</th>
+                            <td>{{$param->previous}}</td>
+                            <td>{{$param->name}}</td>
+                            <td>{{$param->next}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         @else
             <h4 class="card-title">No Middleware</h4>
         @endif

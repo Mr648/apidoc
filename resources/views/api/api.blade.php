@@ -37,7 +37,7 @@
                 <div class="card-text"><strong>Description:</strong>
                     <p>{{$api->description}}</p></div>
                 <div class="card-text"><strong>Type:</strong>
-                    <p>{{ucfirst($api->type)}}</p></div>
+                    <p class="{{$api->style}}">{{ucfirst($api->type)}}</p></div>
                 <div class="card-text"><strong>Body:</strong>
                     <p>{{ucfirst($api->body)}}</p></div>
             </div>

@@ -2,7 +2,7 @@
 @section('content')
     <div class="card mt-4">
         <div class="card-header">
-            <h4 class="card-title my-0">Middlewares<span
+            <h4 class="card-title my-0">Middlewares <span
                     class="badge badge-dark badge-pill">{{count($middlewares)}}</span></h4>
         </div>
         <div class="card-body">

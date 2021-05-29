@@ -4,26 +4,28 @@
     </div>
     <div class="card-body">
         @if(count($params)!=0)
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Value</th>
-                    <th scope="col">Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($params as $param)
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
                     <tr>
-                        <th scope="row">{{$param->id}}</th>
-                        <td>{{$param->name}}</td>
-                        <td>{{$param->value}}</td>
-                        <td>{{$param->description}}</td>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Description</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($params as $param)
+                        <tr>
+                            <th scope="row">{{ $loop->index +1 }}</th>
+                            <td>{{$param->name}}</td>
+                            <td>{{$param->value}}</td>
+                            <td>{{$param->description}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         @else
             <h4 class="card-title">No headers</h4>
         @endif

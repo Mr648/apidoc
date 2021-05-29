@@ -4,28 +4,36 @@
     </div>
     <div class="card-body">
         @if(count($params)!=0)
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Type</th>
-                    <th scope="col" colspan="3">Sample</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($params as $param)
-                    <tr>
-                        <th scope="row">{{$param->id}}</th>
-                        <td>{{$param->code}}</td>
-                        <td>{{$param->type}}</td>
-                        <td>
-                            <pre><code class="language-json">{{$param->sample}}</code></pre>
-                        </td>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr aria-colcount="8">
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Sample</th>
+                        <th>Request</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($params as $param)
+                        <tr>
+                            <th scope="row">{{ $loop->index +1 }}</th>
+                            <td>{{$param->code}}</td>
+                            <td>{{$param->type}}</td>
+                            <td>{{$param->description}}</td>
+                            <td class="justify-content-center">
+                                <pre style="max-width: 400px !important;"><code>{{$param->sample}}</code></pre>
+                            </td>
+                            <td class="justify-content-center">
+                                <pre style="max-width: 400px !important;"><code>{{$param->request}}</code></pre>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         @else
             <h4 class="card-title">No responses</h4>
         @endif

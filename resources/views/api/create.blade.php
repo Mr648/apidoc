@@ -1,6 +1,6 @@
 @extends('controls.form')
 @section('inputs')
-    @include('controls.input' , ['input'=>'route'])
+    @include('controls.input' , ['input'=>'route', 'default'=>'/api/'])
     @include('controls.input' , ['input'=>'name'])
     @include('controls.input' , ['input'=>'version', 'default'=>'v1.0' , 'style'=>'bg-info text-light border-dark'])
     @include('controls.input' , ['input'=>'scope', 'default'=>'api' , 'style'=>'bg-info text-light border-dark'])
@@ -26,7 +26,7 @@
                 'no-body'=>'no-body',
                 'application/json'=>'application/json',
                 'application/xml'=>'application/xml',
-                'url-encoded'=>'url-encoded',
+                'form-url-encoded'=>'form-url-encoded',
                 'multipart-form'=>'multipart-form',
             ]
         ]

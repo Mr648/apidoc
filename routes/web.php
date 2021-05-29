@@ -27,6 +27,9 @@ Route::resource('apis', ApiController::class)->except([
     'destroy',
     'edit'
 ]);
+Route::get('/apis/{api}/pdf', [ApiController::class, 'toPdf'])->name('apis.pdf');
+Route::get('/apis/{api}/json', [ApiController::class, 'json'])->name('apis.json');
+Route::get('/apis/{api}/simple', [ApiController::class, 'simple'])->name('apis.simple');
 
 Route::resource('middlewares', MiddlewareController::class)->except([
     'update',

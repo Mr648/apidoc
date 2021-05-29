@@ -14,5 +14,7 @@ class Response extends Model
         'code',
         'type',
         'sample',
+        'request',
+        'description',
     ];
 }

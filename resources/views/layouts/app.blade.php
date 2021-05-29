@@ -33,13 +33,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                        <li class="nav-item mx-2">
                             <a class="nav-link btn btn-outline-info rounded-pill" href="{{route('apis.create')}}"><i class="bi bi-node-plus"></i> Create New API</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">API's</a>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="/">All API's</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="/apis?type=get">GET API's</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" href="/apis?type=post">POST API's</a>
+                        </li>
+                        <li class="nav-item mx-2">
                             <a class="nav-link" href="{{ route('middlewares.index') }}">Middlewares</a>
                         </li>
                     </ul>
@@ -84,8 +90,8 @@
             </div>
         </nav>
 
-        <main class="py-4">
-           <div class="container">
+        <main class="p-4">
+           <div class="container-fluid">
                @yield('content')
            </div>
         </main>

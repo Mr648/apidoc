@@ -17,4 +17,15 @@ class Param extends Model
         'api_id',
         'parent_id',
     ];
+
+
+    public function parent()
+    {
+        return $this->belongsTo(Param::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Param::class, 'parent_id');
+    }
 }
